@@ -4,7 +4,7 @@ on: push
 
 env:
   GITHUB_REF: ${{ github.ref }}
-  GITHUB_REF_NO_PREFIX: ${{ GITHUB_REF##*/ }}
+  GITHUB_REF_NO_PREFIX: ${GITHUB_REF##*/}
 
 jobs:
   test:
