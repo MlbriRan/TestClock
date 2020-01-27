@@ -2,9 +2,9 @@ name: Test
 
 on: push
 
-env:
-  GITHUB_REF: ${{ github.ref }}
-  GITHUB_REF_NO_PREFIX: ${GITHUB_REF##*/}
+#env:
+#  GITHUB_REF: ${{ github.ref }}
+#  GITHUB_REF_NO_PREFIX: ${GITHUB_REF##*/}
 
 jobs:
   test:
@@ -19,5 +19,5 @@ jobs:
         run: |
           echo "******************************************************************************"
           echo "GITHUB_REF = $GITHUB_REF"
-          echo "GITHUB_REF_NO_PREFIX = $GITHUB_REF_NO_PREFIX"
+          echo "GITHUB_REF_NO_PREFIX = ${GITHUB_REF##*/}"
           echo "******************************************************************************"
