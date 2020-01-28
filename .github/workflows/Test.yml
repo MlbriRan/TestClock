@@ -3,12 +3,7 @@ name: Test
 on: push
 
 env:
-  COMMANDS: |
-    echo $PWD;
-    ls;
-    cd TestClock;
-    echo $PWD;
-    ls
+  COMMANDS: echo $PWD;ls;cd TestClock;echo $PWD;ls
 
 jobs:
   test:
