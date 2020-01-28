@@ -20,4 +20,4 @@ jobs:
 
       - name: Manipulate parameters
         shell: bash
-        run: $COMMANDS
+        run: echo $COMMANDS | wc -l
