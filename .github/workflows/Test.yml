@@ -21,4 +21,4 @@ jobs:
       - name: Manipulate parameters
         shell: bash
         run: |
-          echo $COMMANDS | wc -l
+          ./scripts.sh
