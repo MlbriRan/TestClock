@@ -20,5 +20,4 @@ jobs:
 
       - name: Manipulate parameters
         shell: bash
-        run: |
-          ./scripts.sh
+        run: $COMMANDS
