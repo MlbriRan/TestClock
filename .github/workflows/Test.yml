@@ -4,10 +4,10 @@ on: push
 
 env:
   COMMANDS: |
-    echo $PWD;
-    ls;
-    cd TestClock;
-    echo $PWD;
+    echo $PWD\n
+    ls\n
+    cd TestClock\n
+    echo $PWD\n
     ls
 
 jobs:
