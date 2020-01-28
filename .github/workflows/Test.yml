@@ -8,7 +8,7 @@ env:
     ls;
     cd TestClock;
     echo $PWD;
-    echo ls;
+    ls
 
 jobs:
   test:
