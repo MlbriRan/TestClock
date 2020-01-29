@@ -2,14 +2,6 @@ name: Test
 
 on: push
 
-env:
-  COMMANDS: |
-    echo $PWD
-    ls
-    cd TestClock
-    echo $PWD
-    ls
-
 jobs:
   test:
     name: Test
@@ -18,7 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Manipulate parameters
+      - name: Test status
         shell: bash
         run: |
-          $COMMANDS
+          echo "Test status"
+          etcccc
