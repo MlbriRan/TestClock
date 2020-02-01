@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: brightran/testdocker/docker-ubuntu:v1
+      env:
+        MY_PAT: ${{ secrets.MY_PAT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
