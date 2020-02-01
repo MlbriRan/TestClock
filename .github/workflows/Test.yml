@@ -6,25 +6,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    container: 
+      image: brightran/testdocker/docker-ubuntu:v1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build
-        run: npm build
-
-      - name: Test
-        run: npm test
