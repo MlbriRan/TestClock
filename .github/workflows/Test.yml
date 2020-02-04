@@ -17,7 +17,7 @@ jobs:
         with:
           repository: BriRanActions/hello-world-docker-action
           token: ${{ secrets.MY_PAT }}
-          path: ../hello-world-docker-action
+          path: hello-world-docker-action
 
       - name: Check directory
         run: |
@@ -31,12 +31,12 @@ jobs:
           ls
           echo "****************************************************************************"
 
-#      - name: Test Cache
-#        uses: actions/cache@v1
-#        with:
-#          path: hello-world-docker-action
-#          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ github.sha }}
-#          restore-keys: |
-#            ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
-#            ${{ runner.os }}-build-
-#            ${{ runner.os }}-
+      - name: Test Cache
+        uses: actions/cache@v1
+        with:
+          path: hello-world-docker-action
+          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
