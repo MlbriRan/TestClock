@@ -30,6 +30,7 @@ jobs:
             ${{ runner.os }}-
 
   test_cache:
+    needs: [test]
     name: test cache
     runs-on: ubuntu-latest
     steps:
