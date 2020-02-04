@@ -24,10 +24,6 @@ jobs:
         with:
           path: hello-world-docker-action
           key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
 
   test_cache:
     needs: [test]
