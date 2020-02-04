@@ -42,3 +42,14 @@ jobs:
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
+      - name: Check directory
+        run: |
+          echo "*********************************************************************"
+          echo $PWD
+          ls
+          echo "*********************************************************************"
+          cd hello-world-docker-action
+          echo $PWD
+          ls
+          echo "*********************************************************************"
