@@ -25,7 +25,7 @@ jobs:
           
           $body = "{
             `"name`": `"Windows build`",
-            `"status`": `"completed`",
+            `"status`": `"completed`"
           }"
           
           $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method GET
