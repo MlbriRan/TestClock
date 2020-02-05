@@ -9,9 +9,6 @@ jobs:
     name: Windows build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: List check suites for a specific ref
         shell: pwsh
         run: |
@@ -36,3 +33,6 @@ jobs:
           
           $cs_count = $response.total_count
           echo $cs_count
+
+      - name: Checkout
+        uses: actions/checkout@v2
