@@ -24,10 +24,8 @@ jobs:
           $headers.Add("Content-Type", "application/json")
           
           $body = "{
-            `"check_runs": [
-              `"name`": `"Windows build`",
-              `"status`": `"completed`"
-            ]
+            `"check_name`": `"Windows build`",
+            `"status`": `"completed`"
           }"
           
           $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method GET
