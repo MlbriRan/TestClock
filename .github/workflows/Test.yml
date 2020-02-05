@@ -6,7 +6,7 @@ env:
 
 jobs:
   test:
-    name: Test
+    name: Windows build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,7 +26,11 @@ jobs:
           $headers.Add("Accept", "application/vnd.github.antiope-preview+json")
           $headers.Add("Content-Type", "application/json")
           
-          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Method GET
+          $body = "{
+            `"check_name`": `"Windows build`"
+          }"
+          
+          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method GET
           $response | ConvertTo-Json
           
           $cs_count = $response.total_count
