@@ -18,7 +18,7 @@ jobs:
           echo ${{ github.sha }}
           
           $pat = $env:MY_PAT
-          $uri = "https://api.github.com/repos/BrightRan/TestClock/commits/${{ github.sha }}/check-suites"
+          $uri = "https://api.github.com/repos/BrightRan/TestClock/commits/${{ github.sha }}/check-runs"
           $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
           
           $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
@@ -27,7 +27,8 @@ jobs:
           $headers.Add("Content-Type", "application/json")
           
           $body = "{
-            `"check_name`": `"Windows build`"
+            `"check_name`": `"Windows build`",
+            `"status`": `"completed`",
           }"
           
           $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method GET
