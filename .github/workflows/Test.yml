@@ -24,7 +24,7 @@ jobs:
           $headers.Add("Content-Type", "application/json")
           
           $body = "{
-            `"name`": `"Windows build`",
+            `"check_name`": `"Windows build`",
             `"status`": `"completed`"
           }"
           
