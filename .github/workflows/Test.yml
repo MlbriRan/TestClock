@@ -52,6 +52,7 @@ jobs:
           path: status_job02.txt
 
   JOB_03:
+    needs: [JOB_01, JOB_02]
     name: Job 03
     runs-on: ubuntu-latest
     steps:
