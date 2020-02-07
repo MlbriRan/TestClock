@@ -7,7 +7,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Information about workflow run and current job
+      - name: Information about the currently running job
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
         run: |
@@ -18,7 +18,12 @@ jobs:
       - name: Some test commands
         run: |
           echo $PWD
+          epwdcho
+
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Check job status
+        if: always()
         run: |
-          echo "Current job status is ${{ job.status }}."
+          echo "The status of the currently running job is ${{ job.status }}."
