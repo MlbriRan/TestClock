@@ -6,14 +6,11 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    env:
-      GITHUB_CONTEXT: ${{ toJson(github) }}
-      JOB_CONTEXT: ${{ toJson(job) }}
     steps:
       - name: Information about workflow run and current job
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
         run: |
-          echo "************************************************************************************************"
-          echo "$GITHUB_CONTEXT"
           echo "************************************************************************************************"
           echo "$JOB_CONTEXT"
           echo "************************************************************************************************"
