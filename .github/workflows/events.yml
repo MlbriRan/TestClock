@@ -6,6 +6,7 @@ on:
   repository_dispatch:
 
   release:
+    types: [published]
 
   schedule:
     - cron: '0 15 * * *'
