@@ -53,6 +53,7 @@ jobs:
 
   JOB_03:
     needs: [JOB_01, JOB_02]
+    if: always()
     name: Job 03
     runs-on: ubuntu-latest
     steps:
