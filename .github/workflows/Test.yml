@@ -21,6 +21,7 @@ jobs:
           echo ${{ job.status }} > status_job01.txt
 
       - name: Upload file status_job01.txt as an artifact
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: pass_status_job01
@@ -44,6 +45,7 @@ jobs:
           echo ${{ job.status }} > status_job02.txt
 
       - name: Upload file status_job02.txt as an artifact
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: pass_status_job02
