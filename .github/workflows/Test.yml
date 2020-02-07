@@ -1,40 +1,19 @@
 name: Test
 
-on: push
-env:
-  CACHE_NAME: cache-image
+on: 
+  release:
+    types: [published]
 
 jobs:
   test:
-    name: Windows build
+    name: Test Release event
     runs-on: ubuntu-latest
     steps:
-      - name: List check suites for a specific ref
-        shell: pwsh
+      - name: Get release details
         run: |
-          echo ${{ github.sha }}
-          
-          $pat = $env:MY_PAT
-          $uri = "https://api.github.com/repos/BrightRan/TestClock/commits/${{ github.sha }}/check-runs"
-          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
-          
-          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
-          $headers.Add("Accept", "application/vnd.github.antiope-preview+json")
-          $headers.Add("Content-Type", "application/json")
-          
-          $body = "{
-            `"check_name`": `"Windows build`",
-            `"status`": `"completed`"
-          }"
-          
-          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method GET
-          $response | ConvertTo-Json
-          
-          $cs_count = $response.total_count
-          echo $cs_count
+          echo "*************************************************************"
+          echo "GITHUB_REF = $GITHUB_REF"
+          echo "tag name is: ${GITHUB_REF##*/}"
+          echo "branch name is: ${{ github.event.release.target_commitish }}"
+          echo "*************************************************************"
 
-      - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          node-version: '12.x'
