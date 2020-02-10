@@ -3,83 +3,14 @@ name: Test
 on: push
 
 jobs:
-  JOB_01:
-    name: Job 01
+  TEST:
+    name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Some test commands
-        run: |
-          echo $PWD
-          epwdcho
-
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Create file status_job01.txt and write the job status into it
-        if: always()
+      - name: Check git config
         run: |
-          echo ${{ job.status }} > status_job01.txt
-
-      - name: Upload file status_job01.txt as an artifact
-        if: always()
-        uses: actions/upload-artifact@v1
-        with:
-          name: pass_status_job01
-          path: status_job01.txt
-
-  JOB_02:
-    name: Job 02
-    runs-on: ubuntu-latest
-    steps:
-      - name: Some test commands
-        run: |
-          echo $PWD
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Create file status_job02.txt and write the job status into it
-        if: always()
-        run: |
-          echo ${{ job.status }} > status_job02.txt
-
-      - name: Upload file status_job02.txt as an artifact
-        if: always()
-        uses: actions/upload-artifact@v1
-        with:
-          name: pass_status_job02
-          path: status_job02.txt
-
-  JOB_03:
-    needs: [JOB_01, JOB_02]
-    if: always()
-    name: Job 03
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact pass_status_job01
-        uses: actions/download-artifact@v1
-        with:
-          name: pass_status_job01
-
-      - name: Download artifact pass_status_job02
-        uses: actions/download-artifact@v1
-        with:
-          name: pass_status_job02
-
-      - name: Show statuses of Job 01 and Job 02
-        run: |
-          echo "The status of Job 01 is:"
-          cat pass_status_job01/status_job01.txt
-          echo "The status of Job 02 is:"
-          cat pass_status_job02/status_job02.txt
-
-      - name: Set the statuses of Job 01 and Job 02 as output parameters
-        id: set_outputs
-        run: |
-          echo "::set-output name=status_job01::$(<pass_status_job01/status_job01.txt)"
-          echo "::set-output name=status_job02::$(<pass_status_job02/status_job02.txt)"
-
-      - name: Print the values of the outputs
-        run: |
-          echo "status_job01 = ${{ steps.set_outputs.outputs.status_job01 }}"
-          echo "status_job02 = ${{ steps.set_outputs.outputs.status_job02 }}"
+          git config --local user.name
+          git config --local user.email
