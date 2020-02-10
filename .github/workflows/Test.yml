@@ -1,29 +1,18 @@
 name: Test
 
-on: push
+on: 
+  release:
+    types: [edited, deleted]
 
 jobs:
   TEST:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: git config
+      - name: Information about the workflow run
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          git config --local user.name "Bright Ran"
-          git config --local user.email "ranmaoliang@outlook.com"
-
-
-      - name: Check git config
-        run: |
-          git config --local user.name
-          git config --local user.email
-
-      - name: Changes
-        run: |
-          echo "Create test.txt - 200210\r\nUpdate test.txt - 20021001" > test.txt
-          git add -A
-          git commit -m "Update test.txt - 20021001"
-          git push
+          echo "***********************************************************************************"
+          echo "$env:GITHUB_CONTEXT"
+          echo "***********************************************************************************"
