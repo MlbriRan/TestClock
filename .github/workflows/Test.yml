@@ -12,8 +12,8 @@ jobs:
 
       - name: git config
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "Bright Ran"
+          git config --local user.email "ranmaoliang@outlook.com"
 
 
       - name: Check git config
@@ -23,7 +23,7 @@ jobs:
 
       - name: Changes
         run: |
-          echo "Create test.txt - 200210" > test.txt
+          echo "Create test.txt - 200210\r\nUpdate test.txt - 20021001" > test.txt
           git add -A
-          git commit -m "Create test.txt - 200210"
+          git commit -m "Update test.txt - 20021001"
           git push
