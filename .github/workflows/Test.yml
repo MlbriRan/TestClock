@@ -2,7 +2,6 @@ name: Test
 
 on: 
   release:
-    types: [edited, deleted]
 
 jobs:
   TEST:
@@ -13,6 +12,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
+          echo "***********************************************************************************"
+          Event name: ${{ github.event_name }}
+          Event type: ${{ github.event.action }}
           echo "***********************************************************************************"
           echo "$GITHUB_CONTEXT"
           echo "***********************************************************************************"
