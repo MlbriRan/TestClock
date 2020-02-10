@@ -12,5 +12,5 @@ jobs:
 
       - name: Check git config
         run: |
-          git config --local user.name
-          git config --local user.email
+          git config user.name
+          git config user.email
