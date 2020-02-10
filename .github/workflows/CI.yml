@@ -43,6 +43,9 @@ jobs:
         if: success()
         uses: actions/checkout@v2
 
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+
       - name: MSBuild
         working-directory: TestClock
         run: msbuild TestClock.csproj
