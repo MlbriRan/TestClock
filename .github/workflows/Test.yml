@@ -7,13 +7,14 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: git config
         run: |
           git config --local user.name "Bright Ran"
           git config --local user.email "ranmaoliang@outlook.com"
 
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Check git config
         run: |
