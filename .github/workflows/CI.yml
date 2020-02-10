@@ -23,7 +23,8 @@ jobs:
           echo "****************************************************************************************"
           echo "$env:GITHUB_CONTEXT"
           echo "****************************************************************************************"
-          echo ${{ github.event.pull_request.comments.*.message }}
+          echo ${{ github.event.pull_request.title }}
+          echo ${{ github.event.pull_request.body }}
           echo "****************************************************************************************"
 
   build:
