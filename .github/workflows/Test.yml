@@ -20,3 +20,10 @@ jobs:
         run: |
           git config --local user.name
           git config --local user.email
+
+      - name: Changes
+        run: |
+          echo "Create test.txt - 200210" > test.txt
+          git add -a
+          git commit -m "Create test.txt - 200210"
+          git push
