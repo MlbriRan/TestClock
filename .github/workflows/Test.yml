@@ -24,6 +24,6 @@ jobs:
       - name: Changes
         run: |
           echo "Create test.txt - 200210" > test.txt
-          git add -a
+          git add -A
           git commit -m "Create test.txt - 200210"
           git push
