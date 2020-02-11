@@ -29,11 +29,9 @@ jobs:
           echo "****************************************************************************************"
           echo "$env:GITHUB_CONTEXT"
           echo "****************************************************************************************"
-          echo join(${{ github.event.commits.*.message }}, '*****messages*****')
-          echo "****************************************************************************************"
 
   build:
-    if: (github.event_name == 'push' && contains(github.event.commits.*.message, 'Merge pull request ') == 'false') || (github.event_name == 'pull_request')
+    if: (github.event_name == 'push' && contains(github.event.commits.*.message, 'Merge pull request ') == false) || (github.event_name == 'pull_request')
     name: Build
     env:
       UPDATE_PR_BRANCH: true

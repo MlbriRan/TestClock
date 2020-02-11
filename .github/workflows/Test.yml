@@ -1,11 +1,11 @@
 name: Test
 
 on: 
-  release:
-    types: [edited, deleted]
+  push:
 
 jobs:
   TEST:
+    if: contains('Hello Mona the', 'Ran') == true
     name: Test
     runs-on: ubuntu-latest
     steps:
@@ -13,9 +13,6 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo "***********************************************************************************"
-          echo "Event name: ${{ github.event_name }}"
-          echo "Action type: ${{ github.event.action }}"
           echo "***********************************************************************************"
           echo "$GITHUB_CONTEXT"
           echo "***********************************************************************************"
