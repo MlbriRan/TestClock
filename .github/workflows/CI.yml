@@ -4,6 +4,12 @@
 name: CI
 
 on: 
+  push:
+    branches: 
+      - master
+    paths-ignore:
+      - 'docs/**'
+    
   pull_request:
     branches: 
       - master
@@ -12,6 +18,7 @@ on:
 
 jobs:
   workflow_run_info:
+    if: contains(github.event.pull_request.title, '[Python]') || contains(github.event.pull_request.body, '[Python]')
     name: Information about the workflow run
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -23,6 +30,9 @@ jobs:
           echo "****************************************************************************************"
           echo "$env:GITHUB_CONTEXT"
           echo "****************************************************************************************"
+          echo "${{ github.event.pull_request.title }}"
+          echo "${{ github.event.pull_request.body }}"
+          echo "****************************************************************************************"
 
   build:
     name: Build
@@ -31,7 +41,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Update PR Branch
-        if: env.UPDATE_PR_BRANCH == 'true'
+        if: github.event_name == 'pull_request' && env.UPDATE_PR_BRANCH == 'true'
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -42,6 +52,9 @@ jobs:
       - name: Checkout
         if: success()
         uses: actions/checkout@v2
+
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
 
       - name: MSBuild
         working-directory: TestClock
