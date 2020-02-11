@@ -4,6 +4,12 @@
 name: CI
 
 on: 
+  push:
+    branches: 
+      - master
+    paths-ignore:
+      - 'docs/**'
+    
   pull_request:
     branches: 
       - master
