@@ -31,7 +31,7 @@ jobs:
           echo "****************************************************************************************"
 
   build:
-    if: contains(github.event.commits.*.message, 'Merge pull request #') == 'false'
+    if: contains(github.event.commits.*.message, 'Merge pull request ##') == 'false'
     name: Build
     env:
       UPDATE_PR_BRANCH: false
