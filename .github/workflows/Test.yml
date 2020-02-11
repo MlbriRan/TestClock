@@ -14,4 +14,4 @@ jobs:
     steps:
       - name: Check open ports
         run: |
-          netstat -na | find "4873"
+          netstat -na | findstr "4873"
