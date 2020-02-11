@@ -5,7 +5,7 @@ on:
 
 jobs:
   TEST:
-    if: contains(['Hello', 'Mona', 'the'], 'Ran') == 'false'
+    if: contains('Hello Mona the', 'Ran') == 'false'
     name: Test
     runs-on: ubuntu-latest
     steps:
