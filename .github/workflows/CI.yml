@@ -25,12 +25,9 @@ jobs:
     steps:
       - name: Show Information
         run: |
-          echo "This workflow run is triggered by [${{ github.event_name }}.${{ github.event.action }}]."
+          echo "This workflow run is triggered by [${{ github.event_name }}]."
           echo "****************************************************************************************"
           echo "$env:GITHUB_CONTEXT"
-          echo "****************************************************************************************"
-          echo "${{ github.event.pull_request.title }}"
-          echo "${{ github.event.pull_request.body }}"
           echo "****************************************************************************************"
 
   build:
