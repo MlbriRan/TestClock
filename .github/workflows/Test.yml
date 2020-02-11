@@ -5,14 +5,12 @@ on:
 
 jobs:
   TEST:
-    if: contains('Hello Mona the', 'Ran') == true
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
-      - name: Information about the workflow run
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+      - name: Check open ports
         run: |
-          echo "***********************************************************************************"
-          echo "$GITHUB_CONTEXT"
-          echo "***********************************************************************************"
+          netstat -na | find 4873
