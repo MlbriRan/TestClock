@@ -18,7 +18,6 @@ on:
 
 jobs:
   workflow_run_info:
-    if: contains(github.event.pull_request.title, '[Python]') || contains(github.event.pull_request.body, '[Python]')
     name: Information about the workflow run
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -26,12 +25,9 @@ jobs:
     steps:
       - name: Show Information
         run: |
-          echo "This workflow run is triggered by [${{ github.event_name }}.${{ github.event.action }}]."
+          echo "This workflow run is triggered by [${{ github.event_name }}]."
           echo "****************************************************************************************"
           echo "$env:GITHUB_CONTEXT"
-          echo "****************************************************************************************"
-          echo "${{ github.event.pull_request.title }}"
-          echo "${{ github.event.pull_request.body }}"
           echo "****************************************************************************************"
 
   build:
