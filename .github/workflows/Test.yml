@@ -12,6 +12,13 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
-      - name: Check open ports
+      - name: Check open ports on Windows
+        if: matrix.os == 'windows-latest'
+        shell: cmd
         run: |
           netstat -na | findstr "4873"
+
+      - name: Check open ports on Linux
+        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
+        run: |
+          netstat -anlp | grep "4873"
