@@ -18,7 +18,6 @@ on:
 
 jobs:
   workflow_run_info:
-    if: contains(github.event.pull_request.title, '[Python]') || contains(github.event.pull_request.body, '[Python]')
     name: Information about the workflow run
     env:
       GITHUB_CONTEXT: ${{ toJson(github) }}
