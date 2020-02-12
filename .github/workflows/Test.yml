@@ -30,5 +30,7 @@ jobs:
             }
           }"
           
-          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method POST
+          $response = Invoke-WebRequest -Uri $uri -Headers $headers -Body $body -Method POST
+          $StatusCode = $Response.StatusCode
+          echo $StatusCode
           $response | ConvertTo-Json
