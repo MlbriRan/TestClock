@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: TestClock/bin/Debug
-          key: ${{ runner.os }}-TestClock-${{ github.sha }}-cache-${{ hashFiles('TestClock/bin/**') }}
+          key: ${{ runner.os }}-TestClock-${{ github.sha }}-cache
 
   CHECK_CACHE:
     needs: [TEST]
