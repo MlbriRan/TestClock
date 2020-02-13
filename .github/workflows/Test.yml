@@ -14,9 +14,9 @@ jobs:
       - name: Setup MSBuild.exe
         uses: warrenbuckley/Setup-MSBuild@v1
 
-      - name: MSBuild
-        working-directory: TestClock
-        run: msbuild TestClock.csproj
+#      - name: MSBuild
+#        working-directory: TestClock
+#        run: msbuild TestClock.csproj
 
       - name: Cache
         uses: actions/cache@v1
