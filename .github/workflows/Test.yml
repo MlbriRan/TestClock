@@ -22,9 +22,10 @@ jobs:
         uses: actions/cache@v1
         with:
           path: TestClock/bin/Debug
-          key: ${{ runner.os }}-TestClock-cache-${{ hashFiles('TestClock/bin/**') }}
+          key: ${{ runner.os }}-TestClock-${{ hithub.sha }}-cache-${{ hashFiles('TestClock/bin/**') }}
 
   CHECK_CACHE:
+    needs: [TEST]
     name: Check cahce
     runs-on: [ubuntu-latest]
     steps:
