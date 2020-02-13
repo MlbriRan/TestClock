@@ -11,51 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup MSBuild.exe
-        uses: warrenbuckley/Setup-MSBuild@v1
-
-#      - name: MSBuild
-#        working-directory: TestClock
-#        run: msbuild TestClock.csproj
-
-      - name: Cache
-        uses: actions/cache@v1
-        with:
-          path: TestClock/bin/Debug
-          key: ${{ runner.os }}-TestClock-${{ github.sha }}-cache
-
-  CHECK_CACHE:
-    needs: [TEST]
-    name: Check cahce
-    runs-on: [ubuntu-latest]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cache
-        uses: actions/cache@v1
-        with:
-          path: TestClock/bin/Debug
-          key: ${{ runner.os }}-TestClock-${{ github.sha }}-cache
-          restore-keys: |
-            ${{ runner.os }}-TestClock-${{ github.sha }}-
-            ${{ runner.os }}-TestClock-
-
-      - name: Check directory
+      - name: test http server
         run: |
-          echo "*******************************************************************************"
-          echo $PWD
-          ls
-          echo "*******************************************************************************"
-          cd TestClock
-          echo $PWD
-          ls
-          echo "*******************************************************************************"
-          cd bin
-          echo $PWD
-          ls
-          echo "*******************************************************************************"
-          cd Debug
-          echo $PWD
-          ls
-          echo "*******************************************************************************"
+          nohup start-http-server 8000 &
+          curl http://127.0.0.1:8000/
