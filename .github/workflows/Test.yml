@@ -36,8 +36,26 @@ jobs:
         uses: actions/cache@v1
         with:
           path: TestClock/bin/Debug
-          key: ${{ runner.os }}-TestClock-${{ github.sha }}-cache-${{ hashFiles('TestClock/bin/**') }}
+          key: ${{ runner.os }}-TestClock-${{ github.sha }}-cache
           restore-keys: |
-            ${{ runner.os }}-TestClock-${{ github.sha }}-cache-
             ${{ runner.os }}-TestClock-${{ github.sha }}-
             ${{ runner.os }}-TestClock-
+
+      - name: Check directory
+        run: |
+          echo "*******************************************************************************"
+          echo $PWD
+          ls
+          echo "*******************************************************************************"
+          cd TestClock
+          echo $PWD
+          ls
+          echo "*******************************************************************************"
+          cd bin
+          echo $PWD
+          ls
+          echo "*******************************************************************************"
+          cd Debug
+          echo $PWD
+          ls
+          echo "*******************************************************************************"
