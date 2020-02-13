@@ -37,3 +37,7 @@ jobs:
         with:
           path: TestClock/bin/Debug
           key: ${{ runner.os }}-TestClock-${{ github.sha }}-cache-${{ hashFiles('TestClock/bin/**') }}
+          restore-keys: |
+            ${{ runner.os }}-TestClock-${{ github.sha }}-cache-
+            ${{ runner.os }}-TestClock-${{ github.sha }}-
+            ${{ runner.os }}-TestClock-
