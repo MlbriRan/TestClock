@@ -13,5 +13,5 @@ jobs:
 
       - name: test http server
         run: |
-          nohup start-http-server 8000 &
+          nohup http-server 8000 &
           curl http://127.0.0.1:8000/
