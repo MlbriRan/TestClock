@@ -11,7 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install http-server
+        run: |
+          npm install http-server -g
+
       - name: test http server
         run: |
-          nohup start-http-server 8000 &
+          nohup http-server 8000 &
           curl http://127.0.0.1:8000/
