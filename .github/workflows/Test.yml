@@ -7,30 +7,32 @@ jobs:
   TEST:
     name: Test
     runs-on: windows-latest
-    env:
-      MY_PAT: ${{ secrets.MY_PAT }}
     steps:
-      - name: Test repository dispatch event
-        shell: pwsh
-        run: |
-          $pat = $env:MY_PAT
-          $uri = "https://api.github.com/repos/BrightRan/TestClock/dispatches"
-          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
-          
-          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
-          $headers.Add("Accept", "application/vnd.github.everest-preview+json")
-          $headers.Add("Content-Type", "application/json")
-          
-          $body = "{
-            `"event_type`": `"test-repository-dispatch`",
-            `"client_payload`": {
-              `"unit`": false,
-              `"integration`": true
-            }
-          }"
-          
-          $response = Invoke-WebRequest -Uri $uri -Headers $headers -Body $body -Method POST
-          $StatusCode = $Response.StatusCode
-          echo $StatusCode
-          $response | ConvertTo-Json
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+
+      - name: MSBuild
+        working-directory: TestClock
+        run: msbuild TestClock.csproj
+
+      - name: Cache
+        uses: actions/cache@v1
+        with:
+          path: TestClock/bin/Debug
+          key: ${{ runner.os }}-TestClock-cache-${{ hashFiles('TestClock/bin/**') }}
+
+  CHECK_CACHE:
+    name: Check cahce
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache
+        uses: actions/cache@v1
+        with:
+          path: TestClock/bin/Debug
+          key: ${{ runner.os }}-TestClock-cache-${{ hashFiles('TestClock/bin/**') }}
