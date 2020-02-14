@@ -18,5 +18,5 @@ jobs:
 
       - name: Test mkdir test2/test2-1
         run: |
-          mkdir -p -v /test2/test2-1
+          mkdir -p -v ./test2/test2-1
           ls
