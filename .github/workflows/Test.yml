@@ -8,14 +8,15 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+#      - name: Checkout
+#        uses: actions/checkout@v2
 
-      - name: Install http-server
+      - name: Test mkdir test1/test1-1
         run: |
-          npm install http-server
+          mkdir -p -v test1/test1-1
+          ls
 
-      - name: test http server
+      - name: Test mkdir test2/test2-1
         run: |
-          nohup npx http-server 8000 &
-          curl http://127.0.0.1:8000/
+          mkdir -p -v test2/test2-1
+          ls
