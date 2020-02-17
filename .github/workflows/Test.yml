@@ -23,17 +23,19 @@ jobs:
 
   TEST_02:
     name: Test 02
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Create directory and file
+        shell: bash
         run: |
           mkdir -p -v first/second
           cd first/second
           echo "Test function hashFiles" > test.txt
 
       - name: Test function hashFiles
+        shell: bash
         run: |
           echo ${{ hashFiles('first/second/**') }}
