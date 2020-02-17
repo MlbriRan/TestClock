@@ -5,54 +5,19 @@ on:
 
 jobs:
   TEST:
-    name: Test on Linux
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Create directory and file
+      - name: setup-node
+        uses: actions/setup-node@v1
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Publish npm
         run: |
-          mkdir -p -v first/second
-          cd first/second
-          echo "Test function hashFiles" > test.txt
-
-      - name: Test function hashFiles
-        run: |
-          echo ${{ hashFiles('first/second/**') }}
-
-  TEST_02:
-    name: Test on Windows
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Create directory and file
-        shell: bash
-        run: |
-          mkdir -p -v first/second
-          cd first/second
-          echo "Test function hashFiles" > test.txt
-
-      - name: Test function hashFiles
-        shell: bash
-        run: |
-          echo ${{ hashFiles('first/second/**') }}
-
-  TEST_03:
-    name: Test on macOS
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Create directory and file
-        run: |
-          mkdir -p -v first/second
-          cd first/second
-          echo "Test function hashFiles" > test.txt
-
-      - name: Test function hashFiles
-        run: |
-          echo ${{ hashFiles('first/second/**') }}
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
