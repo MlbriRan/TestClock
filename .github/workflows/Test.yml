@@ -39,3 +39,20 @@ jobs:
         shell: bash
         run: |
           echo ${{ hashFiles('first/second/**') }}
+
+  TEST_03:
+    name: Test on macOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Create directory and file
+        run: |
+          mkdir -p -v first/second
+          cd first/second
+          echo "Test function hashFiles" > test.txt
+
+      - name: Test function hashFiles
+        run: |
+          echo ${{ hashFiles('first/second/**') }}
