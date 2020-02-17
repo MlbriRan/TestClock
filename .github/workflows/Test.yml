@@ -11,19 +11,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Test function hashFiles
+      - name: Create directory and file
         run: |
           mkdir -p -v first/second
           cd first/second
           echo "Test function hashFiles 01" > test.txt
 
+      - name: Test function hashFiles
+        run: |
+          echo hashFiles('first/second/**')
+
   TEST_02:
     name: Test 02
     runs-on: ubuntu-latest
     steps:
-      - name: Test function hashFiles
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Create directory and file
         run: |
           mkdir -p -v first/second
           cd first/second
           echo "Test function hashFiles 02" > test.txt
-          
+
+      - name: Test function hashFiles
+        run: |
+          echo hashFiles('first/second/**')
