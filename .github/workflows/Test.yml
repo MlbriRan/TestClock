@@ -5,7 +5,7 @@ on:
 
 jobs:
   TEST:
-    name: Test
+    name: Test on Linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,7 +22,7 @@ jobs:
           echo ${{ hashFiles('first/second/**') }}
 
   TEST_02:
-    name: Test 02
+    name: Test on Windows
     runs-on: windows-latest
     steps:
       - name: Checkout
