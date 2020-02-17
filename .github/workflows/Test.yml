@@ -8,15 +8,22 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Test mkdir test1/test1-1
+      - name: Test function hashFiles
         run: |
-          mkdir -p -v test1/test1-1
-          ls
+          mkdir -p -v first/second
+          cd first/second
+          echo "Test function hashFiles 01" > test.txt
 
-      - name: Test mkdir test2/test2-1
+  TEST_02:
+    name: Test 02
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test function hashFiles
         run: |
-          mkdir -p -v ./test2/test2-1
-          ls
+          mkdir -p -v first/second
+          cd first/second
+          echo "Test function hashFiles 02" > test.txt
+          
