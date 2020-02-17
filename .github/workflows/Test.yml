@@ -15,7 +15,7 @@ jobs:
         run: |
           mkdir -p -v first/second
           cd first/second
-          echo "Test function hashFiles 01" > test.txt
+          echo "Test function hashFiles" > test.txt
 
       - name: Test function hashFiles
         run: |
@@ -32,7 +32,7 @@ jobs:
         run: |
           mkdir -p -v first/second
           cd first/second
-          echo "Test function hashFiles 02" > test.txt
+          echo "Test function hashFiles" > test.txt
 
       - name: Test function hashFiles
         run: |
