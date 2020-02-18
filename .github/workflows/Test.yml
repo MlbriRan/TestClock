@@ -11,13 +11,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: setup-node
-        uses: actions/setup-node@v1
-        with:
-          registry-url: 'https://npm.pkg.github.com'
-
-      - name: Publish npm
+      - name: Check repository
         run: |
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "Current repository is ${{ github.repository }}"
