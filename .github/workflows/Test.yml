@@ -1,8 +1,8 @@
 name: Test
 
 on: 
-  check_run:
-    types: [completed]
+  schedule:
+    - cron: '* * * * *'
 
 jobs:
   TEST:
