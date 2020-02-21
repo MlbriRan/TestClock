@@ -24,6 +24,5 @@ jobs:
           $headers.Add("Content-Type", "application/json")
 
           $response = Invoke-RestMethod -Uri $uri -Headers $headers -Method POST
-          $response | ConvertTo-Json
           $reg_token = $response.token
           echo "The registration token is $reg_token"
