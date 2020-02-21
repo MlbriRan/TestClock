@@ -8,15 +8,20 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          path: main_repo
+#      - name: Checkout
+#        uses: actions/checkout@v2
 
-      - name: Information about the workflow run
+      - name: Create a registration token
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+          MY_PAT: ${{ secrets.MY_PAT }}
         run: |
-          echo "****************************************************************************************"
-          echo "$GITHUB_CONTEXT"
-          echo "****************************************************************************************"
+          $pat = $env:MY_PAT
+          $uri = "https://api.github.com/repos/BrightRan/TestClock/actions/runners/registration-token"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+
+          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
+          $headers.Add("Content-Type", "application/json")
+
+          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method POST
+          $response | ConvertTo-Json
