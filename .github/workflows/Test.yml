@@ -6,24 +6,12 @@ on:
 jobs:
   TEST:
     name: Test
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Create a registration token
-        env:
-          MY_PAT: ${{ secrets.MY_PAT }}
+      - name:  install libvirt
         run: |
-          $pat = $env:MY_PAT
-          $uri = "https://api.github.com/repos/BrightRan/TestClock/actions/runners/registration-token"
-          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
-
-          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
-          $headers.Add("Content-Type", "application/json")
-
-          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Method POST
-          $response | ConvertTo-Json
-          $reg_token = $response.token
-          echo "The registration token is $reg_token"
+          sudo apt-get update
+          sudo apt-get install -y libvirt-dev
