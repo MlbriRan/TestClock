@@ -23,5 +23,5 @@ jobs:
           $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
           $headers.Add("Content-Type", "application/json")
 
-          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method POST
+          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Method POST
           $response | ConvertTo-Json
