@@ -11,7 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name:  install libvirt
+      - name:  Check run_id and run_number
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libvirt-dev
+          echo "run_id = ${{ github.run_id }}"
+          echo "run_number = ${{ github.run_number }}"
+
+      - name:  Failed run
+        run: |
+          faru
