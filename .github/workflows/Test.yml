@@ -6,7 +6,7 @@ on:
 jobs:
   TEST:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       MY_PAT: ${{ secrets.MY_PAT }}
     steps:
