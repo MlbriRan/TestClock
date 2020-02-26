@@ -7,11 +7,10 @@ jobs:
   TEST:
     name: Test
     runs-on: ubuntu-latest
-    services:
-      nginx:
-        image: nginx
-        ports: 
-          - 8080:80
+    container: 
+      image: node:10.16-jessie
+      ports: 
+        - 80
     steps:
       - name: Checkout
         uses: actions/checkout@v2
