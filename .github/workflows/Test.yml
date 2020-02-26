@@ -6,9 +6,12 @@ on:
 jobs:
   TEST:
     name: Test
-    runs-on: windows-latest
-    env:
-      MY_PAT: ${{ secrets.MY_PAT }}
+    runs-on: ubuntu-latest
+    services:
+      nginx:
+        image: nginx
+        ports: 
+          - 8080:80
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,22 +20,3 @@ jobs:
         run: |
           echo "run_id = ${{ github.run_id }}"
           echo "run_number = ${{ github.run_number }}"
-
-      - name:  List check runs
-        run: |
-          $runId = ${{ github.run_id }}
-          $pat = $env:MY_PAT
-          $uri = "https://api.github.com/repos/BrightRan/TestClock/check-suites/$runId/check-runs"
-          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
-          
-          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
-          $headers.Add("Accept", "application/vnd.github.antiope-preview+json")
-          $headers.Add("Content-Type", "application/json")
-          
-          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Method GET
-          $response | ConvertTo-Json
-
-      - name:  Failed run
-        run: |
-          faru
