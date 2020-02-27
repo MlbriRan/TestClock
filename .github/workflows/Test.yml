@@ -13,7 +13,7 @@ jobs:
 
       - name:  Create file
         run: |
-          mkdir -p first/second
+          mkdir -p /first/second/
           echo "test text" > /first/second/test.txt
           cat first/second/test.txt
 
