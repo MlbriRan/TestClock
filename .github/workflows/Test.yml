@@ -14,11 +14,11 @@ jobs:
       - name:  Create file
         run: |
           mkdir -p first/second
-          echo "test text" > first/second/test.txt
+          echo "test text" > /first/second/test.txt
           cat first/second/test.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: testArtifact
-          path: first/second
+          path: /first/second/
