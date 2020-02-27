@@ -13,3 +13,8 @@ jobs:
 
       - name:  Create file
         uses: BriRanActions/hello-world-docker-action@master
+
+      - name: Check files
+        run: |
+          echo "Current working-directory is $PWD"
+          ls
