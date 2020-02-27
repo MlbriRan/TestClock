@@ -7,16 +7,18 @@ jobs:
   TEST:
     name: Test
     runs-on: ubuntu-latest
-    container: 
-      image: node:10.16-jessie
-      ports: 
-        - 80
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name:  Check run_id and run_number
+      - name:  Create file
         run: |
-          echo "run_id = ${{ github.run_id }}"
-          echo "run_number = ${{ github.run_number }}"
-          echo "Current working-directory is $PWD"
+          mkdir -p first/second
+          echo "test text" > first/second/test.txt
+          cat first/second/test.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: testArtifact
+          path: /first/second/
