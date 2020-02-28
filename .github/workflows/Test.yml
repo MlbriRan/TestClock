@@ -17,4 +17,3 @@ jobs:
       - name: Check files
         run: |
           echo "Current working-directory is $PWD"
-          ls
