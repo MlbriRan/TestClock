@@ -1,7 +1,9 @@
 name: Test
 
 on: 
-  push:
+  pull_request:
+    branches: 
+      - master
 
 jobs:
   TEST:
@@ -11,9 +13,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name:  Create file
-        uses: BriRanActions/hello-world-docker-action@master
-
-      - name: Check files
+      - name:  Create a repository dispatch event
         run: |
-          echo "Current working-directory is $PWD"
+          $pat = $env:MY_PAT
+          $uri = "https://api.github.com/repos/BrightRan/TestClock/dispatches"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+          
+          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
+          $headers.Add("Accept", "application/vnd.github.everest-preview+json")
+          $headers.Add("Content-Type", "application/json")
+          
+          $body = "{
+            `"event_type`": `"test-repository-dispatch`",
+            `"client_payload`": {
+              `"unit`": false,
+              `"integration`": true
+            }
+          }"
+          
+          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method POST
+          $response | ConvertTo-Json
