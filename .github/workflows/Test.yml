@@ -13,4 +13,10 @@ jobs:
 
       - name:  Test cut command
         run: |
+          echo "**************************"
+          echo $GITHUB_REF
+          echo "**************************"
           echo $GITHUB_REF | cut -d'/' -f3-
+          echo "**************************"
+          echo $(GITHUB_REF##/*)
+          echo "**************************"
