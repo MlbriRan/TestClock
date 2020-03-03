@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name:  Test directory
+      - name:  Create directory
         run: |
           echo "run mkdir -p $HOME/.m2/repository"
           mkdir -p $HOME/.m2/repository
@@ -21,7 +21,7 @@ jobs:
           echo "******************************ls in $HOME/.m2******************************"
           ls -lah $HOME/.m2
 
-      - name:  Test copy
+      - name:  Copy files
         run: |
           cp -R TestClock/. $HOME/.m2/repository
           ls $HOME/.m2/repository
