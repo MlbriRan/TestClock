@@ -23,5 +23,5 @@ jobs:
 
       - name:  Test copy
         run: |
-          cp -R TestClock/. $HOME/.m2/repository
+          cp -R TestClock $HOME/.m2/repository
           ls $HOME/.m2/repository
