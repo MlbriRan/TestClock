@@ -13,6 +13,5 @@ jobs:
 
       - name:  Test directory
         run: |
-          echo "$PWD"
-          cd ..
-          echo "$PWD"
+          echo $PWD
+          echo $HOME
