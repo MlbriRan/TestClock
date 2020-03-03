@@ -23,5 +23,9 @@ jobs:
 
       - name:  Copy files
         run: |
+          echo "run cp -R TestClock/. $HOME/.m2/repository"
           cp -R TestClock/. $HOME/.m2/repository
+          echo "******************************ls in $HOME/.m2******************************"
+          ls $HOME/.m2
+          echo "*************************ls in $HOME/.m2/repository*************************"
           ls $HOME/.m2/repository
