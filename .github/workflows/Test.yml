@@ -13,10 +13,7 @@ jobs:
 
       - name:  Test directory
         run: |
-          echo "****************************************************"
-          echo $PWD
-          ls
-          echo "****************************************************"
+          echo "run mkdir -p $HOME/.m2/repository"
           mkdir -p $HOME/.m2/repository
           echo "****************************************************"
           echo $HOME
