@@ -20,3 +20,8 @@ jobs:
           ls -lah $HOME
           echo "******************************ls in $HOME/.m2******************************"
           ls -lah $HOME/.m2
+
+      - name:  Test copy
+        run: |
+          cp TestClock $HOME/.m2/repository
+          ls $HOME/.m2/repository
