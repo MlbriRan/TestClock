@@ -11,12 +11,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name:  Create directory
+      - name:  Create a secret
+        env:
+          MY_PAT: ${{ secrets.MY_PAT }}
         run: |
-          echo "run mkdir -p $HOME/.m2/repository"
-          mkdir -p $HOME/.m2/repository
-          echo "********************************ls in #HOME********************************"
-          echo $HOME
-          ls -lah $HOME
-          echo "******************************ls in $HOME/.m2******************************"
-          ls -lah $HOME/.m2
+          $pat = $env:MY_PAT
+          $uri = "https://api.github.com/repos/BrightRan/TestClock/actions/secrets/ADD_SECRET_API"
+          $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $pat)))
+          
+          $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+          $headers.Add("Authorization", ("Basic {0}" -f $base64AuthInfo))
+          $headers.Add("Content-Type", "application/json")
+          
+          $body = "{
+            `"encrypted_value`": `"123`",
+            `"key_id`": `"test_add_secret_api`"
+          }"
+          
+          $response = Invoke-RestMethod -Uri $uri -Headers $headers -Body $body -Method PUT
+          $response | ConvertTo-Json
