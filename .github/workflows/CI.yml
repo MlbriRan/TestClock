@@ -10,8 +10,7 @@ on:
     paths:
       - '!.github/workflows/**'
       - '.github/workflows/CI.yml'
-    paths-ignore:
-      - 'docs/**'
+      - '!docs/**'
     
   pull_request:
     branches: 
