@@ -13,3 +13,7 @@ jobs:
 
       - name: Test Docker container action
         uses: BriRanActions/hello-world-docker-action@master
+
+      - name: Check directory
+        run: |
+          ls -lah /home/runner/work/_temp/_github_home
