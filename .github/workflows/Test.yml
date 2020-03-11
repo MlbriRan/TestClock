@@ -11,15 +11,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: List branches
-        shell: bash
-        run: |
-          git fetch
-          echo "********************************************"
-          echo "list both remote-tracking and local branches"
-          git branch -a
-          echo "********************************************"
-          echo "list remote-tracking branches"
-          git branch -r
-          echo "********************************************"
-          
+      - name: Test Docker container action
+        uses: BriRanActions/hello-world-docker-action@master
