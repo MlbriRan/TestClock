@@ -16,4 +16,5 @@ jobs:
 
       - name: Check directory
         run: |
-          ls -lah /home/runner/work/_temp/_github_home/.m2
+          ls -lah /home/runner/work/_temp/_github_home/.m2/repository
+          cat /home/runner/work/_temp/_github_home/.m2/repository/test.txt
