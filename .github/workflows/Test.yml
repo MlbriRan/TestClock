@@ -21,6 +21,7 @@ jobs:
 
       - name: Move files
         run: |
-          mv /home/runner/work/_temp/_github_home/.m2 $HOME
+          mkdir -p $HOME/.m2
+          cp /home/runner/work/_temp/_github_home/.m2 $HOME/.m2
           ls -lah $HOME/.m2/repository
           cat $HOME/.m2/repository/test.txt
