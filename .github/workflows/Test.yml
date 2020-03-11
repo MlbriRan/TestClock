@@ -2,8 +2,6 @@ name: Test
 
 on: 
   push:
-    paths: 
-      - "example.api/**"
 
 jobs:
   TEST:
@@ -12,3 +10,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: List branches
+        shell: bash
+        run: |
+          echo "********************************************"
+          echo "list both remote-tracking and local branches"
+          git branch -a
+          echo "********************************************"
+          echo "list remote-tracking branches"
+          git branch -r
+          echo "********************************************"
+          
