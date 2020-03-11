@@ -16,6 +16,7 @@ jobs:
       - name: List branches
         shell: bash
         run: |
+          git fetch
           echo "********************************************"
           echo "list both remote-tracking and local branches"
           git branch -a
