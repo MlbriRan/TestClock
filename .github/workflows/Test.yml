@@ -18,3 +18,9 @@ jobs:
         run: |
           ls -lah /home/runner/work/_temp/_github_home/.m2/repository
           cat /home/runner/work/_temp/_github_home/.m2/repository/test.txt
+
+      - name: Move files
+        run: |
+          mv /home/runner/work/_temp/_github_home/.m2/repository $HOME/.m2/repository
+          ls -lah $HOME/.m2/repository
+          cat $HOME/.m2/repository/test.txt
