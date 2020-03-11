@@ -16,4 +16,4 @@ jobs:
 
       - name: Check directory
         run: |
-          ls -lah /home/runner/work/_temp/_github_home
+          ls -lah /home/runner/work/_temp/_github_home/.m2
