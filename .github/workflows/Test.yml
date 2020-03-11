@@ -28,5 +28,5 @@ jobs:
           echo "======================================="
           ls -lah /home/runner/work/_temp/_github_home
           echo "======================================="
-          rm -rf /home/runner/work/_temp/_github_home/.m2
+          rm -rf /home/runner/work/_temp/_github_home/.m2/
           ls -lah /home/runner/work/_temp/_github_home
