@@ -14,6 +14,20 @@ jobs:
       - name: setup-dart
         uses: DanTup/gh-actions/setup-dart@master
 
+      - name: Check PATH with cmd
+        shell: cmd
+        run: |
+          echo %path%
+
+      - name: Check PATH with pwsh
+        run: |
+          echo %path%
+
+      - name: Check PATH with bash
+        shell: bash
+        run: |
+          echo $PATH
+
       - name: Build
         shell: bash
         run: |
