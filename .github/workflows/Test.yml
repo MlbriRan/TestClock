@@ -9,23 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
 
-      - name: Test Docker container action
-        uses: BriRanActions/hello-world-docker-action@master
+      - name: setup-dart
+        uses: DanTup/gh-actions/setup-dart@master
 
-      - name: Check directory
+      - name: Build
+        shell: bash
         run: |
-          ls -lah /home/runner/work/_temp/_github_home/.m2/repository
-          cat /home/runner/work/_temp/_github_home/.m2/repository/test.txt
-
-      - name: Copy files
-        run: |
-          cp -r /home/runner/work/_temp/_github_home/.m2 $HOME
-          ls -lah $HOME/.m2/repository
-          cat $HOME/.m2/repository/test.txt
-          echo "======================================="
-          ls -lah /home/runner/work/_temp/_github_home
-          echo "======================================="
-          rm -rf /home/runner/work/_temp/_github_home/.m2/
-          ls -lah /home/runner/work/_temp/_github_home
+          pub get
+          mkdir build
+          dart2native bin/main.dart -v -o build/outputname
