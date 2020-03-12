@@ -21,7 +21,7 @@ jobs:
 
       - name: Check PATH with pwsh
         run: |
-          echo %path%
+          echo $env:path
 
       - name: Check PATH with bash
         shell: bash
