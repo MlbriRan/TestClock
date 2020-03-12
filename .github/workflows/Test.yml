@@ -33,7 +33,7 @@ jobs:
         run: |
           echo $env:path
           echo "=============================================="
-          pub --help
+          pub.bat --help
 
       - name: Check PATH with bash
         shell: bash
