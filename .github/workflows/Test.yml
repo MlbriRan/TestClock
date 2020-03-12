@@ -15,7 +15,6 @@ jobs:
         uses: DanTup/gh-actions/setup-dart@master
 
       - name: Build
-        shell: bash
         run: |
           pub get
           mkdir build
