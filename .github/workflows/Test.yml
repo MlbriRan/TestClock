@@ -1,50 +1,24 @@
 name: Test
 
-on: 
-  push:
+on:
+  issues:
 
 jobs:
   TEST:
     name: Test
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
+      - name: First interaction
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: 'Hello \nThank you for submitting an issue!'
+
+      - name: Show workflow run info
+        run: |
+          echo "$GITHUB_CONTEXT"
+
       - name: Checkout
         uses: actions/checkout@v1
-
-      - name: setup-dart
-        uses: DanTup/gh-actions/setup-dart@master
-
-      - name: Check PATH with cmd
-        shell: cmd
-        run: |
-          echo %path%
-          echo "=============================================="
-          pub --help
-
-      - name: Check PATH with powershell
-        shell: powershell
-        run: |
-          echo $env:path
-          echo "=============================================="
-          pub --help
-
-      - name: Check PATH with pwsh
-        shell: pwsh
-        run: |
-          echo $env:path
-          echo "=============================================="
-          pub.bat --help
-
-      - name: Check PATH with bash
-        shell: bash
-        run: |
-          echo $PATH
-          echo "=============================================="
-          pub.bat --help
-
-      - name: Build
-        shell: bash
-        run: |
-          pub.bat get
-          mkdir build
-          dart2native bin/main.dart -v -o build/outputname
