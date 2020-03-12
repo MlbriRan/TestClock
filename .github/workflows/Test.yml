@@ -21,7 +21,15 @@ jobs:
           echo "=============================================="
           pub --help
 
+      - name: Check PATH with powershell
+        shell: powershell
+        run: |
+          echo $env:path
+          echo "=============================================="
+          pub --help
+
       - name: Check PATH with pwsh
+        shell: pwsh
         run: |
           echo $env:path
           echo "=============================================="
