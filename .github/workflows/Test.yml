@@ -18,19 +18,25 @@ jobs:
         shell: cmd
         run: |
           echo %path%
+          echo "=============================================="
+          pub --help
 
       - name: Check PATH with pwsh
         run: |
           echo $env:path
+          echo "=============================================="
+          pub --help
 
       - name: Check PATH with bash
         shell: bash
         run: |
           echo $PATH
+          echo "=============================================="
+          pub --help
 
       - name: Build
         shell: bash
         run: |
-          flutter pub get
+          pub get
           mkdir build
           dart2native bin/main.dart -v -o build/outputname
