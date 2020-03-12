@@ -45,6 +45,6 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          pub get
+          pub.bat get
           mkdir build
           dart2native bin/main.dart -v -o build/outputname
